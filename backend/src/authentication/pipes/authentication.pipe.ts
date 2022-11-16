@@ -1,6 +1,8 @@
 import { HttpException, HttpStatus, Injectable, PipeTransform } from '@nestjs/common';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
+
+
 import { AuthenticationDtoForValidate } from '../__types__';
 import { AuthenticationService } from '../services';
 import { UserId } from '../../features/user/__types__';
@@ -22,11 +24,12 @@ export class AuthenticationPipe implements PipeTransform<AuthenticationDtoForVal
             throw new HttpException('Неверный пароль или логин', HttpStatus.BAD_REQUEST);
         }
 
-        const candidateId = await this._authenticationService.getCandidateAfterVerification(value);
-        if (!candidateId) {
+        const candidate = await this._authenticationService.getCandidateAfterVerification(value);
+
+        if (!candidate) {
             throw new HttpException('Неверный пароль или логин', HttpStatus.BAD_REQUEST);
         }
-        return candidateId.id;
+        return candidate.id;
     }
 
 }

@@ -3,25 +3,18 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { join } from 'path';
 
-import { AuthenticationEntity } from './authentication/entities';
-import { UserEntity } from './features/user/entity';
-import { config } from './core';
-import { SessionEntity } from './authentication/entities';
+import { configurationFactory, configurationDatabaseFactory } from './core';
 
 
 @Module({
     imports: [
         ConfigModule.forRoot({
-            envFilePath: `${join(__dirname, '..', `./.env/.env.${process.env.NODE_ENV ?? 'development.ts'}`)}`,
+            envFilePath: `${join(__dirname, '..', `./.env/.env.${process.env.NODE_ENV ?? 'development'}`)}`,
             isGlobal: true,
-            load: [config],
+            load: [configurationFactory],
         }),
         TypeOrmModule.forRootAsync({
-            useFactory: (configService: ConfigService) => ({
-                ...configService.get('database'),
-                entities: [AuthenticationEntity, UserEntity, SessionEntity],
-                synchronize: true,
-            }),
+            useFactory: configurationDatabaseFactory,
             inject: [ConfigService],
         }),
     ],

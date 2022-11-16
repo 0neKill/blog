@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 
-import { FeaturesModule } from './features';
 import { ConnectModule } from './connect.module';
-import { AuthenticationModule } from './authentication/authentication.module';
+
+import { FeaturesModule } from './features';
+import { AuthenticationModule } from './authentication';
+
 
 @Module({
     imports: [FeaturesModule, ConnectModule, AuthenticationModule],

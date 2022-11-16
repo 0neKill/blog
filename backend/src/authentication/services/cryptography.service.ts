@@ -1,21 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
-import { ICryptographyService } from '../__types__';
 import { ConfigService } from '@nestjs/config';
 
+import { hash, compare } from 'bcrypt';
+
+
 @Injectable()
-export class CryptographyService implements ICryptographyService {
+export class CryptographyService {
     private readonly _configService: ConfigService;
 
     constructor(configService: ConfigService) {
         this._configService = configService;
     }
 
-    async hashing(string: string): Promise<string> {
-        return await bcrypt.hash(string, this._configService.get('hash.salt'));
+    public async hashing(string: string): Promise<string> {
+        return await hash(string, this._configService.get('bcrypt.salt'));
     }
 
-    async isEqualHash(stringOne: string, stringTwo: string): Promise<boolean> {
-        return await bcrypt.compare(stringOne, stringTwo);
+    public async isEqualHash(stringOne: string, stringTwo: string): Promise<boolean> {
+        return await compare(stringOne, stringTwo);
     }
 }

@@ -17,7 +17,7 @@ export class UserEntity {
     @Column({ type: 'integer', nullable: false })
     authentication_id: number;
 
-    @OneToOne(() => AuthenticationEntity)
+    @OneToOne(() => AuthenticationEntity,)
     @JoinColumn({ name: 'authentication_id' })
     authentication: AuthenticationEntity;
 }

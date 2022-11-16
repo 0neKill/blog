@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty, MinLength, IsString } from 'class-validator';
+
 import { Password } from '../interfaces';
 
 export class RegisterDto {

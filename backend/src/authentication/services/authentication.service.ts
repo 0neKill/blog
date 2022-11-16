@@ -1,21 +1,22 @@
 import { Injectable } from '@nestjs/common';
 
 import { AuthenticationRepository } from '../repositories';
+import { AuthenticationEntity } from '../entities';
+
+import { UserService } from '../../features/user/service';
 import { CryptographyService } from './cryptography.service';
 import { SessionService } from './session.service';
-import { UserService } from '../../features/user/service';
-import { AuthenticationEntity } from '../entities';
 
 import {
     AuthenticationDtoForValidate,
-    IAuthenticationService,
     Password,
     RegisterDto, TokenJWT,
 } from '../__types__';
 import { User, UserId } from '../../features/user/__types__';
 
+
 @Injectable()
-export class AuthenticationService implements IAuthenticationService {
+export class AuthenticationService {
 
     private readonly _authenticationRepository: AuthenticationRepository;
     private readonly _cryptographyService: CryptographyService;
@@ -43,9 +44,8 @@ export class AuthenticationService implements IAuthenticationService {
         return true;
     }
 
-    public async authentication(candidateData: UserId): Promise<TokenJWT> {
-        console.log(candidateData, 'тут');
-        return Promise.resolve(undefined);
+    public async authentication(candidateId: UserId): Promise<TokenJWT> {
+        return await this._sessionService.createSession(candidateId);
     }
 
     public async getCandidateAfterVerification(candidateData: AuthenticationDtoForValidate): Promise<User | null> {

@@ -1,10 +1,14 @@
-import { Controller, Post } from '@nestjs/common';
-import { ISessionController, TokenJWT } from '../__types__';
-import { UserId } from '../../features/user/__types__';
+import { Controller, Post, UseGuards } from '@nestjs/common';
+
 import { SessionService } from '../services';
 
-@Controller('api/session')
-export class SessionController implements ISessionController {
+import { TokenJWT } from '../__types__';
+import { UserId } from '../../features/user/__types__';
+import { GetRefreshToken, GetUserId, RefreshTokenGuard } from '../../common';
+
+
+@Controller('session')
+export class SessionController {
 
     private readonly _sessionService: SessionService;
 
@@ -12,9 +16,10 @@ export class SessionController implements ISessionController {
         this._sessionService = sessionService;
     }
 
+    @UseGuards(RefreshTokenGuard)
     @Post('/refresh')
-    async refresh(userId: UserId): Promise<TokenJWT> {
-        return await this._sessionService.refresh(userId);
+    public async refresh(@GetUserId() userId: UserId, @GetRefreshToken() refreshToken: string): Promise<TokenJWT> {
+        return await this._sessionService.refresh(userId, refreshToken);
     }
 
 }

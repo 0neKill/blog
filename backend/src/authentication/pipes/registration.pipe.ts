@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, PipeTransform } from '@nestjs/common';
+import { ArgumentMetadata, HttpException, HttpStatus, Injectable, PipeTransform } from '@nestjs/common';
 import { validate, ValidationError } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 
@@ -19,6 +19,7 @@ export class RegistrationPipe implements PipeTransform<RegisterDtoForValidate, P
     async transform(value: RegisterDtoForValidate): Promise<RegisterDto> {
         const object: RegisterDtoForValidate = plainToClass(RegisterDtoForValidate, value);
         let errors = await this._validate(object);
+
         if (errors.length) {
             const message = errors.map(item => (
                 `${item.property}: ${Object.values(item.constraints ?? item.children[0].constraints).join(', ')}`
