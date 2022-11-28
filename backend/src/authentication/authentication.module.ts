@@ -6,11 +6,11 @@ import { AuthenticationController, SessionController } from './controllers';
 import { AuthenticationRepository, SessionRepository } from './repositories';
 import { AuthenticationEntity, SessionEntity } from './entities';
 
-import { FeaturesModule } from '../features';
+import { UserModule } from '../features/user';
 import { CheckerTokenModule } from '../common';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([AuthenticationEntity, SessionEntity]), FeaturesModule, forwardRef(() => CheckerTokenModule)],
+    imports: [TypeOrmModule.forFeature([AuthenticationEntity, SessionEntity]), UserModule, forwardRef(() => CheckerTokenModule)],
     controllers: [AuthenticationController, SessionController],
     providers: [
         AuthenticationService,

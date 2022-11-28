@@ -1,5 +1,5 @@
-import { HttpException, Injectable } from '@nestjs/common';
-import { JsonWebTokenError, JwtPayload, sign, SignOptions, TokenExpiredError, verify } from 'jsonwebtoken';
+import { Injectable } from '@nestjs/common';
+import { JsonWebTokenError, sign, SignOptions, TokenExpiredError, verify } from 'jsonwebtoken';
 import { v4 as uuidV4 } from 'uuid';
 
 
@@ -7,7 +7,6 @@ import { TokenJWT } from '../__types__';
 import { UserId } from '../../features/user/__types__';
 import { ConfigService } from '@nestjs/config';
 import { JsonWebTokenConfiguration, OptionJWT, TokenType } from '../../core/config/json-web-token';
-import { SigningOptions } from 'crypto';
 
 export type SessionId = string;
 

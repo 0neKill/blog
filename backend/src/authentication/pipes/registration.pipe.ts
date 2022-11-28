@@ -30,6 +30,7 @@ export class RegistrationPipe implements PipeTransform<RegisterDtoForValidate, P
             email: value.email,
             user_name: value.user_name,
             password: value.password,
+            skill: value.skill,
         };
     }
 

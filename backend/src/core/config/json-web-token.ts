@@ -3,9 +3,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 let path_by = `${__dirname}/../keys/`;
-
 if (process.env.NODE_ENV === 'development') {
-    path_by = `${__dirname}/../../../src/core/keys/`;
+    path_by = `${__dirname}/../../../../src/core/keys/`;
 }
 
 const publicKey = fs.readFileSync(path.join(path_by, 'public.key'));

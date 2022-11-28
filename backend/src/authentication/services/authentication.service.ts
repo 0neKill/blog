@@ -39,7 +39,10 @@ export class AuthenticationService {
         const { password, ...candidate } = candidateData;
         const authentication = await this._createDataForUser(password);
         await this._userService.create({
-            name: candidate.user_name, email: candidate.email, authentication: authentication,
+            name: candidate.user_name,
+            email: candidate.email,
+            authentication: authentication,
+            skill: candidate.skill,
         });
         return true;
     }
@@ -51,7 +54,7 @@ export class AuthenticationService {
     public async getCandidateAfterVerification(candidateData: AuthenticationDtoForValidate): Promise<User | null> {
         const candidate = await this._userService.getExistUserBy({
             email: candidateData.email,
-        });
+        }, null, ['authentication']);
         return await this._getCandidateOrNull(candidate, candidateData.password);
     }
 

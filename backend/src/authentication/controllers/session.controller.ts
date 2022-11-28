@@ -1,10 +1,9 @@
 import { Controller, Post, UseGuards } from '@nestjs/common';
 
 import { SessionService } from '../services';
-
-import { TokenJWT } from '../__types__';
-import { UserId } from '../../features/user/__types__';
 import { GetRefreshToken, GetUserId, RefreshTokenGuard } from '../../common';
+import { UserId } from '../../features/user/__types__';
+import { TokenJWT } from '../__types__';
 
 
 @Controller('session')

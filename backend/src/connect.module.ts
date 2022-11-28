@@ -9,7 +9,7 @@ import { configurationFactory, configurationDatabaseFactory } from './core';
 @Module({
     imports: [
         ConfigModule.forRoot({
-            envFilePath: `${join(__dirname, '..', `./.env/.env.${process.env.NODE_ENV ?? 'development'}`)}`,
+            envFilePath: `${join(__dirname, '..', '..', `./.env/.env.${process.env.NODE_ENV ?? 'development'}`)}`,
             isGlobal: true,
             load: [configurationFactory],
         }),

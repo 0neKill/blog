@@ -12,6 +12,10 @@ export class RegisterDto {
     public readonly user_name: string;
 
     @IsNotEmpty({ message: 'Поле не может быть пустым' })
+    @IsString({ message: 'Дожно быть строкой' })
+    public readonly skill: string;
+
+    @IsNotEmpty({ message: 'Поле не может быть пустым' })
     @MinLength(4, { message: 'Пароль не может быть меньше 4 символов' })
     public readonly password: Password;
 }

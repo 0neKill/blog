@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 
 import { ConnectModule } from './connect.module';
 
-import { FeaturesModule } from './features';
 import { AuthenticationModule } from './authentication';
+import { FeaturesModule } from './features';
 
 
 @Module({
-    imports: [FeaturesModule, ConnectModule, AuthenticationModule],
+    imports: [ConnectModule, AuthenticationModule, FeaturesModule],
 })
 export class AppModule {
 

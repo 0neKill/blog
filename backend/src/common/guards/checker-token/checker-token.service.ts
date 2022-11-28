@@ -44,7 +44,6 @@ export class CheckerTokenService {
 
             return true;
         } catch (e) {
-            console.log(e);
             throw new ForbiddenException();
         }
     }

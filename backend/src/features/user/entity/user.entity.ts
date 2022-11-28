@@ -14,10 +14,17 @@ export class UserEntity {
     @Column({ type: 'character varying', nullable: false })
     name: string;
 
+    @Column({ type: 'character varying', nullable: true })
+    avatar?: string;
+
+    @Column({ type: 'character varying', nullable: true })
+    skill: string;
+
     @Column({ type: 'integer', nullable: false })
     authentication_id: number;
 
-    @OneToOne(() => AuthenticationEntity,)
+
+    @OneToOne(() => AuthenticationEntity)
     @JoinColumn({ name: 'authentication_id' })
     authentication: AuthenticationEntity;
 }
