@@ -19,7 +19,7 @@ export class SessionRepository {
     }
 
     public async remove(field: Partial<SessionEntity>): Promise<boolean> {
-        return !!await this._sessionEntity.delete(field);
+        return this._sessionEntity.delete(field).then(data => !!data.affected);
     }
 
     public async update(field: Partial<SessionEntity>, options: Partial<SessionEntity>): Promise<boolean> {

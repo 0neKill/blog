@@ -4,11 +4,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { BlogEntity } from './entities';
 import { BlogRepository } from './repositories';
 import { BlogService } from './services';
+import { CheckerTokenModule } from '../../common';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([BlogEntity])],
+    imports: [TypeOrmModule.forFeature([BlogEntity]), CheckerTokenModule],
     controllers: [BlogController],
-    providers: [BlogRepository, BlogService],
+    providers: [BlogService, BlogRepository],
 })
 export class BlogModule {
 

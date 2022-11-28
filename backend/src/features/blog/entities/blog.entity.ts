@@ -2,17 +2,23 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, Pri
 import { UserId } from '../../user/__types__';
 import { UserEntity } from '../../user/entity';
 
-export type Categories = 'UI Design' | 'Front-end' | 'Back-end';
+export enum Categories { 'UI Design' = 'UI Design', 'Front-end' = 'Front-end', 'Back-end' = 'Back-end'}
+
+
+export type PostId = number;
 
 @Entity('blog')
 export class BlogEntity {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: PostId;
 
     @Column({ type: 'character varying', nullable: false })
     title: string;
 
     @Column({ type: 'character varying', nullable: false })
+    text: string;
+
+    @Column({ type: 'enum', nullable: false, enum: Categories })
     category: Categories;
 
     @Column({ type: 'integer', nullable: false })
