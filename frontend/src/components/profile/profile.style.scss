@@ -1,0 +1,50 @@
+@import "src/helpers/constants/styles/screens";
+
+.profile {
+  width: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  $profile: &;
+  @media (max-width: $table-min) {
+    width: 40px;
+  }
+  @media (max-width: $mobile) {
+    display: none;
+  }
+
+  &--post {
+    width: 100%;
+    justify-content: normal;
+
+    #{$profile}__info {
+      display: flex;
+      flex-direction: column;
+
+      order: 1;
+      font-size: 16px;
+      color: #FFFFFF;
+      margin-left: 16px;
+
+      #{$profile}__category {
+        color: #FFFFFF;
+        opacity: 0.6;
+      }
+    }
+
+    #{$profile}__avatar {
+      width: 50px;
+      height: 50px;
+      box-shadow: none;
+    }
+  }
+
+  &__name {
+    font-size: 16px;
+    color: #FFFFFF;
+    align-items: center;
+    @media (max-width: $table-min) {
+      display: none;
+    }
+  }
+}

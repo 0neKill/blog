@@ -1,0 +1,50 @@
+.input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  $input: &;
+
+  &__field {
+    height: 48px;
+    padding: 5px 40px 0 15px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: #3A3E42;
+    color: #ffffff;
+
+    &:focus ~ #{$input}__placeholder, &:not(:placeholder-shown) ~ #{$input}__placeholder {
+      top: 2px;
+      font-size: 10px;
+      opacity: .5;
+    }
+  }
+
+  &__placeholder {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    opacity: .7;
+    transition: top .2s linear, font-size .2s linear, opacity .2s linear;
+  }
+  #{$input}__error {
+    font-size: 12px;
+    color: #E36464;
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity .1s linear;
+    &.error{
+      opacity: 1;
+    }
+  }
+  &.error {
+    #{$input}__field {
+      background: rgba(219, 57, 57, 0.3);
+    }
+
+
+  }
+
+
+}

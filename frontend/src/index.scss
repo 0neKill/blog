@@ -1,1 +1,18 @@
 @import "~normalize.css/normalize.css";
+
+
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+#root,
+body {
+  font-size: 16px;
+  font-family: 'Bellota', cursive;
+  font-weight: 700;
+  background: linear-gradient(180deg, #374151 0%, #111827 100%);
+  min-height: 100vh;
+  max-width: 100%;
+  color: #ffffff;
+}

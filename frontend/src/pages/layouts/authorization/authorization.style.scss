@@ -1,0 +1,16 @@
+@import "src/helpers/constants/styles/screens";
+
+.authorization {
+  height: 100%;
+
+  &, &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: $mobile) {
+      height: 100%;
+      padding: 0;
+    }
+  }
+}

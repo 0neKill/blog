@@ -1,4 +1,6 @@
-import {createBrowserRouter} from 'react-router-dom';
-import { PublicRoutes } from './public.routes';
+import { createBrowserRouter } from 'react-router-dom';
 
-export const routers = createBrowserRouter([PublicRoutes])
+import { MainWithLayoutRoutes } from './main.routes';
+import { AuthorizationRoutes } from './authorization.routes';
+
+export const routers = createBrowserRouter([AuthorizationRoutes, MainWithLayoutRoutes]);

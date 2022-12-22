@@ -1,0 +1,13 @@
+.home{
+  height: 100%;
+  width: 100%;
+}
+.post-list {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-around;
+  height: 100%;
+}
